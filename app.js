@@ -21,7 +21,7 @@ bot.hears(/open.spotify.com\/track(?=.*\?)/i, async ctx => {
         {
             caption: escapeCharacters(`*${result.ogTitle}*
 ${extractName(result.ogDescription)} • ${result.musicReleaseDate.substring(0,4)}
-[Спотифай](${encodeURI(result.ogUrl)})`),
+[Spotify](${encodeURI(result.ogUrl)})`),
             parse_mode: 'MarkdownV2'
         });
 
@@ -49,7 +49,7 @@ bot.hears(/open.spotify.com\/album/i, async ctx => {
         {
             caption: escapeCharacters(`*${result.ogDescription}*
 ${result.musicReleaseDate.substring(0,4)}
-[Спотифай](${encodeURI(result.ogUrl)})`),
+[Spotify](${encodeURI(result.ogUrl)})`),
             parse_mode: 'MarkdownV2'
         });
     } catch(err){
