@@ -60,7 +60,7 @@ ${result.musicReleaseDate.substring(0,4)}
 } )
 
 function extractUrl(text){
-    const match = text.match(/open.spotify.com(.+)(?= |\s)/);
+    const match = text.match(/open.spotify.com(.+?)(?=$|\s)/);
     if (match === null) {
         return '';
     }
