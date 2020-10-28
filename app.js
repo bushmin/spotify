@@ -11,7 +11,7 @@ const bot = new Telegraf(TOKEN, {
 
 bot.hears(/open.spotify.com\/track(?=.*\?)/i, async ctx => {
     try{
-        const options = { url: ctx.message.text };
+        const options = { url: extractUrl(ctx.message.text) };
         const { error, result } = await ogs(options);
         if (error) {
             throw Error('invalid url')
@@ -39,7 +39,7 @@ ${extractName(result.ogDescription)} • ${result.musicReleaseDate.substring(0,4
 
 bot.hears(/open.spotify.com\/album/i, async ctx => {
     try{
-        const options = { url: ctx.message.text };
+        const options = { url: extractUrl(ctx.message.text) };
         const { error, result } = await ogs(options);
         if (error) {
             throw Error('invalid url')
@@ -58,6 +58,14 @@ ${result.musicReleaseDate.substring(0,4)}
     }
     return;
 } )
+
+function extractUrl(text){
+    const match = text.match(/open.spotify.com(.+)(?= |\s)/);
+    if (match === null) {
+        return '';
+    }
+    return match[0]
+}
 
 function extractName(description){
     const match = description.match(/a song by (.*) on Spotify/);
